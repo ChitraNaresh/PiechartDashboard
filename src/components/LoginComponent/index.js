@@ -7,25 +7,26 @@ class LoginComponent extends Component {
     username: '',
     password: '',
     errorMsg: false,
+    isLoad: false,
   }
 
   onSubmitSuccess = () => {
     this.setState({errorMsg: true})
     const {history} = this.props
+    this.setState({isLoad: false})
     history.replace('/Home')
   }
 
   onSubmitFailure = () => {
-    this.setState({errorMsg: true})
+    this.setState({errorMsg: true, isLoad: false})
     const {history} = this.props
     history.replace('/')
   }
 
   submitForm = async event => {
     event.preventDefault()
-
     const {username, password} = this.state
-    this.setState({username: '', password: ''})
+    this.setState({username: '', password: '', isLoad: true})
     const userDetails = {username, password}
     const url = 'https://apis.ccbp.in/login'
     const options = {
@@ -42,11 +43,11 @@ class LoginComponent extends Component {
   }
 
   onChangeUsername = event => {
-    this.setState({username: event.target.value})
+    this.setState({username: event.target.value, errorMsg: false})
   }
 
   onChangePassword = event => {
-    this.setState({password: event.target.value})
+    this.setState({password: event.target.value, errorMsg: false})
   }
 
   renderPasswordField = () => {
@@ -58,7 +59,7 @@ class LoginComponent extends Component {
         </label>
         <input
           type="password"
-          placeholder="Password : rahul@2021"
+          placeholder="Password : rahul@2021 (use this password)"
           id="password"
           className="input-el"
           value={password}
@@ -76,7 +77,7 @@ class LoginComponent extends Component {
           USERNAME
         </label>
         <input
-          placeholder="User name : rahul"
+          placeholder="User name : rahul (use this name)"
           type="text"
           id="username"
           className="input-el"
@@ -88,9 +89,10 @@ class LoginComponent extends Component {
   }
 
   render() {
-    const {errorMsg} = this.state
+    const {errorMsg, isLoad} = this.state
     return (
       <div className="login-form-container">
+        <h1 className="login-heading">Login to go ahead...</h1>
         <form className="form-container" onSubmit={this.submitForm}>
           <div>{this.renderUsernameField()}</div>
           <div>{this.renderPasswordField()}</div>
@@ -98,6 +100,7 @@ class LoginComponent extends Component {
             <button type="submit" className="login-btn">
               Login
             </button>
+            {isLoad && <p className="loading">Loading...</p>}
             {errorMsg && (
               <p className="err-msg">Invalid password or Username</p>
             )}
