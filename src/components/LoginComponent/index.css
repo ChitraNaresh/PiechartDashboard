@@ -1,0 +1,50 @@
+.login-form-container {
+  background-image: linear-gradient(to bottom, Pink, lightblue);
+  height: 100vh;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-heading {
+  font-family: 'Roboto';
+  font-size: 30px;
+  color: #000000;
+  text-align: center;
+}
+.form-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+.login-btn {
+  background-color: lightcoral;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border: none;
+  color: #ffffff;
+}
+.label-el {
+  font-family: 'Roboto';
+  font-size: 20px;
+  color: #000000;
+}
+.input-el {
+  height: 30px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.btn-card {
+  text-align: center;
+}
+.err-msg {
+  font-size: 12px;
+  color: red;
+}
